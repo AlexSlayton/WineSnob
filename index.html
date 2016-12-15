@@ -6,8 +6,8 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Insert link to css file -->
-  <link rel="stylesheet" href="style.css">
-  <!-- Insert link to js file -->
+	<link rel="stylesheet" href="style.css">
+	<!-- Insert link to js file -->
 
     <!-- Pull the Google API -->
 
@@ -34,51 +34,51 @@
         <div class="jumbotron">
             <h1>Search for a winery near you</h1>
             <div class="container">
-        <div class="row">
-              <div class="col-md-6">
-                  <!-- this is the not so nice button -->
-                  <!-- <div id="pac-input" class="controls" type="text" placeholder="Enter a location"> -->
-                      <!-- this is the nice button-->
-                      <div class="input-group col-md-12">
-                          <input id="pac-input" type="text" class="form-control input-lg controls" placeholder="Enter a city here" />
-                          <span class="input-group-btn">
-                              <button class="btn btn-info btn-sm" type="button" id="searchBtn">
-                                <i class="glyphicon glyphicon-search"></i>
-                            </button>
-                          </span>
-                      </div>
-                  </div>
-              </div>
-        </div>
-      </div>
-      <div id="map"></div>
+				<div class="row">
+        			<div class="col-md-6">
+            			<!-- this is the not so nice button -->
+            			<!-- <div id="pac-input" class="controls" type="text" placeholder="Enter a location"> -->
+                			<!-- this is the nice button-->
+                			<div class="input-group col-md-12">
+                    			<input id="pac-input" type="text" class="form-control input-lg controls" placeholder="Enter a city here" />
+                    			<span class="input-group-btn">
+                        			<button class="btn btn-info btn-sm" type="button" id="searchBtn">
+                            		<i class="glyphicon glyphicon-search"></i>
+                        		</button>
+                    			</span>
+                			</div>
+            			</div>
+        			</div>
+				</div>
+			</div>
+			<div id="map"></div>
         </div>
     
     <div id="infowindow-content">
-      <span id="place-name" class="title"></span><br>
-      Place ID <span id="place-id"></span><br>
-      <span id="place-address"></span>
-    </div>  
+    	<span id="place-name" class="title"></span><br>
+    	Place ID <span id="place-id"></span><br>
+    	<span id="place-address"></span>
+    </div>	
 
     <!-- <div class="mapGoesHere">
-      <img src="sampleMap.jpg" />
+    	<img src="sampleMap.jpg" />
     </div>   -->  
     <br>
     <br>
     <div class="tableSection">
-      <table class="table table-hover" id="resultsTable">
+    	<table class="table table-hover" id="resultsTable">
       <thead>
-        <tr>
-          <th>Winery</th>
-          <th>Website</th>
-          <th>Best Selling Wine</th>
-          <th>Purchase Info</th>
-        </tr>
+  			<tr>
+  				<th>Winery</th>
+  				<th>Website</th>
+  				<th>Best Selling Wine</th>
+  				<th>Purchase Info</th>
+  			</tr>
         </thead>
         <tbody>
 
         </tbody>
-    </table>
+		</table>
     </div>    
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7FPiNadNSS6x078vpZUJQnzfww2xxw_U&libraries=places&callback=initMap"
@@ -237,7 +237,7 @@ function callback(results, status) {
     </script>
 <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> -->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7FPiNadNSsS6x078vpZUJQnzfww2xxw_U&libraries=places&callback=initMap"></script>
-  <script src="wineLogic.js"></script> -->
+	<script src="wineLogic.js"></script> -->
 
 </body>
 
