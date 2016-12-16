@@ -9,6 +9,12 @@
 	-webkit-text-stroke: 2px black;
 }
 
+#theTable {
+	padding: 30px;
+	background-image: none;
+	background-color: #ebebeb;
+}
+
 h1 {
 	color: white;
 	border: 10px;

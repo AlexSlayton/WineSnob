@@ -5,8 +5,10 @@
     <title>Wineabees</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!-- Insert link to css file -->
 	<link rel="stylesheet" href="style.css">
+
 	<!-- Insert link to js file -->
 
     <!-- Pull the Google API -->
@@ -65,21 +67,24 @@
     </div>   -->  
     <br>
     <br>
-    <div class="tableSection">
-    	<table class="table table-hover" id="resultsTable">
-      <thead>
-  			<tr>
-  				<th>Winery</th>
-  				<th>Website</th>
-  				<th>Best Selling Wine</th>
-  				<th>Purchase Info</th>
-  			</tr>
-        </thead>
-        <tbody>
+    <div class="container">
+      <div class="panel panel-success">
+        <div class="panel-heading"><h2 class="panel-title">Wines You Could Buy</h2></div>
+        <table class="table table-hover table-striped" id="resultsTable">
+          <thead>
+            <tr>
+              <th class="text-left">Winery</th>
+              <th class="text-left">Website</th>
+              <!--<th>Best Selling Wine</th>
+              <th>Purchase Info</th>-->
+            </tr>
+            </thead>
+            <tbody>
 
-        </tbody>
-		</table>
-    </div>    
+            </tbody>
+        </table>
+      </div>
+    </div>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7FPiNadNSS6x078vpZUJQnzfww2xxw_U&libraries=places&callback=initMap"
         async defer></script>
@@ -127,6 +132,7 @@
 // Checks that the PlacesServiceStatus is OK, and adds a marker
 // using the place ID and location from the PlacesService.
 function callback(results, status) {
+      $('tbody').empty();
       console.log(results);
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         console.log(results[0].geometry.location.lat());
@@ -144,7 +150,7 @@ function callback(results, status) {
 
           console.log(wineryName[i]);
 
-          var wineurl = "http://services.wine.com/api/beta2/service.svc/JSON/catalog?apikey=1610fe00197129ab85ed781b75f1c18e&search=" + encodeURI(wineryName[i]);
+          var wineurl = "http://services.wine.com/api/beta2/service.svc/JSON/catalog?apikey=0af4a8540e6b2602889ecffa5872345d&search=" + encodeURI(wineryName[i]);
 
           var marker = new google.maps.Marker({
               map: map,
@@ -158,23 +164,54 @@ function callback(results, status) {
             //sconsole.log(response);
             console.log(wineryName[counter]);
             var stuff = response;  
-            
+
+            console.log(stuff);
+            if(stuff.Products.List.length){
             // Moved From above for loop and changed results[0] to results[i]
             console.log(counter);
             var tr = $("<tr>");
-            var nametd = $("<td>").text(wineryName[counter]);
+            var name = " " + stuff.Products.List[0].Vineyard.Name;
+            var icon = $('<i>').addClass('fa fa-pagelines text-success').attr('aria-hidden', 'true');
+            var wineryLink = $('<a>').attr('href', stuff.Products.List[0].Vineyard.Url).attr('target', '_blank');
+            wineryLink.append(icon).append(name);
+            var nametd = $("<td>").html(wineryLink);
             // I grab the first wine returned for the winery 
             // If you want more loop through stuff.products.list
-            if(stuff.Products.List.length){
-              var urltd = $("<td>").text(stuff.Products.List[0].Url);
-            }else{
-              var urltd = $("<td>");
+ 
+              var product = stuff.Products.List[0].Name;
+              var productLink = $('<a>').attr('href', stuff.Products.List[0].Url).append(product).attr('target', '_blank');
+              var urltd = $("<td>").html(productLink);
+              var bestsellingtd = $("<td>");
+              var purchasetd = $("<td>");
+              tr.append(nametd).append(urltd);
+              $("#resultsTable tbody").append(tr);
             }
+
+            // if(stuff.Products.List.length){
+            //   var bestsellingtd = $("<td>").text(stuff.Products.List[0].Url);
+            // }else{
+            //   var bestsellingtd = $("<td>");
+            // }
+            // console.log(bestsellingtd);
+
+          //   function getHyperlink() {
+ 
+          //   var str = "Click HERE to see wine";
+          //   var result = str.link();
+          //   document.getElementById("demo").innerHTML = result;
+          // }
+          // console.log(result);
+
+          //   var links = document.links;
+          //   for(var i = 0; i < links.length; i++) {
+          //   var linkHref = document.createTextNode(links[i].href);
+          //   var lineBreak = document.createElement("br");
+          //   document.body.appendChild(linkHref);
+          //   document.body.appendChild(lineBreak);
+          // }
+         
             
-            var bestsellingtd = $("<td>");
-            var purchasetd = $("<td>");
-            tr.append(nametd).append(urltd).append(bestsellingtd).append(purchasetd);
-            $("#resultsTable tbody").append(tr);
+            
             counter++;
           });   //closes $.ajax
       }// closes for loop 
@@ -189,7 +226,7 @@ function callback(results, status) {
 
 
           
-  //@todo: pass your winery api - console.log(results)
+ 
      
       $(document).ready(function(){
         $("#searchBtn").on("click keypress", function(){
