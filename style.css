@@ -1,3 +1,7 @@
+body {
+	background-color: #DDCFE1;
+}
+
 .jumbotron {
 	background-image: url("DSC_0057.jpg");
 	background-size:cover;
